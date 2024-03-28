@@ -1,0 +1,50 @@
+ 
+nav {
+  background-color: #625e5ed1;
+  color: #150202f0;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+ 
+ul {
+  list-style-type: none;
+  padding: 6px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+
+}
+ 
+#login{
+    justify-self: flex-end;
+    text-decoration: none;
+    color: #f7f1f1;
+    font-weight: bold;
+    font-size: 30px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+ 
+a {
+  text-decoration: none;
+  color: #f7f1f1;
+  font-weight: bold;
+  font-size: 30px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+ 
+a:hover {
+  color: #121111; /* Change the color on hover to a nice orange */
+}
+
+#search-input{
+    height: 30px;
+}
+.btn-primary{
+  cursor: pointer;
+
+}
