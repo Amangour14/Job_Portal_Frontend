@@ -44,6 +44,7 @@ export const loginUser=(user:User)=>{
 }
 
 export const apply=(data:ApplyAttributes)=>{
-    return axios.post(`http://localhost:8080/apply`,data,)
+    return axios.post(`http://localhost:8080/apply`,data,{headers:{
+      Authorization:`Bearer ${users.token}`}})
 }
 
