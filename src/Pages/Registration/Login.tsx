@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Login.css"
-import { loginUser } from "../../Hooks/FormSubmission";
+import { loginUser } from "../../Services/FormSubmission";
 import { useQueryClient,useMutation } from "react-query";
-import { useAuth } from "../../Hooks/useAuth";
+import { useAuth } from "../../Services/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 

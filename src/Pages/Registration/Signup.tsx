@@ -4,8 +4,8 @@ import * as Yup from "yup";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient, useMutation } from "react-query";
-import { addUser } from "../../Hooks/FormSubmission";
-import { useAuth } from "../../Hooks/useAuth";
+import { addUser } from "../../Services/FormSubmission";
+import { useAuth } from "../../Services/useAuth";
 import { toast } from "react-toastify";
 
 const Signup: React.FC = () => {

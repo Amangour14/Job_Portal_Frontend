@@ -4,9 +4,14 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import "./UD_Job_form.css"
 import { useMutation, useQueryClient } from 'react-query';
- import { apply } from '../../Hooks/FormSubmission';
+ import { apply } from '../../Services/FormSubmission';
 import { toast } from 'react-toastify';
- 
+import { Card } from '../Job/Job';
+
+export interface User{
+  id:number,
+  email:string,
+}
  export interface FormValues {
   fullName: string;
   email: string;
@@ -15,6 +20,8 @@ import { toast } from 'react-toastify';
 }
 
 interface ApplyAttributes {
+  JobJobId:Card,
+  UserId:number,
   userId: number;
   jobId: number;
   jobApplication: FormValues;
@@ -54,7 +61,7 @@ const UD_Job_Form: React.FC = () => {
     localStorage.setItem("userJobDetails",JSON.stringify(values))
     const {state}=JSON.parse(localStorage.getItem("job")??"")
     const user=JSON.parse(localStorage.getItem("user")??"")
-    const apply:ApplyAttributes=({userId:user.id,jobId:state.job.jobId,jobApplication:values})
+    const apply:ApplyAttributes=({JobJobId:state.job,UserId:user.id,userId:user.id,jobId:state.job.jobId,jobApplication:values})
     mutate(apply);  
   };
  
