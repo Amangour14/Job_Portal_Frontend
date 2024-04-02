@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Contact.css";
-import { addContact } from "../../Hooks/FormSubmission";
+import { addContact } from "../../Services/FormSubmission";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import { useAuth } from "../../Hooks/useAuth";
+import { useAuth } from "../../Services/useAuth";
 
 const ContactFormSchema = Yup.object().shape({
   name: Yup.string().required("Required").min(3),

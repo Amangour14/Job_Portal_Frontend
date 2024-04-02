@@ -1,5 +1,5 @@
  import "./Job.css"
- import useJobQuery from "../../Hooks/useJobQuery";
+ import useJobQuery from "../../Services/useJobQuery";
 import { Link } from "react-router-dom";
  export type Card={
   jobId:number,

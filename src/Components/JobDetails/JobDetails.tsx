@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from "react";
 import "./JobDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
-import useJobQuery from "../Services/useJobQuery";
-import useJobStore from "../Stores/JobApply";
-import { Card } from "../Pages/Job/Job";
-import { useAuth } from "../Services/useAuth";
+import useJobQuery from "../../Service/useJobQuery";
+import useJobStore from "../../Stores/JobApply";
+import { Card } from "../../Pages/Job/Job";
 import { toast } from "react-toastify";
 
 const JobDetails: React.FC = () => {
-
   const { id } = useParams<{ id: string }>();
   const jobId = parseInt(id as string);
   const { data, isLoading, isError, error } = useJobQuery(jobId);
   const jobstore = useJobStore();
   const navigate = useNavigate();
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const checkUser = (user:any) => {
-    return !!user;
-  };
-
-  const [ifUser, setIfUser] = useState<boolean>();
+  const user = localStorage.getItem("user");
   const apply = (data: Card) => {
-    if (ifUser) {
+    if (user !== null) {
       jobstore.applyOne(data);
       navigate("/jobform");
     } else {
@@ -31,14 +22,6 @@ const JobDetails: React.FC = () => {
       });
     }
   };
-  const user = useAuth();
-  useEffect(() => {
-    const isuser = checkUser(user.user);
-    console.log(isuser);
-    setIfUser(isuser);
-    return () => {};
-  }, []);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }

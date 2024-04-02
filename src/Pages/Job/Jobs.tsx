@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
 import Job  from "./Job"
-import { fetchJobs } from "../../Hooks/JobPagination";
+import { fetchJobs } from "../../Services/JobPagination";
 import { useState } from "react";
 
 const Jobs = () => {
