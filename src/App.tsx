@@ -2,9 +2,9 @@ import Navbar from "./Components/Navbar/Navbar.tsx";
 import Jobs from "./Pages/Job/Jobs.tsx";
 import Login from "./Pages/Registration/Login.tsx";
 import Contact from "./Pages/Contact/Contact.tsx";
-import JobDetails from "./Components/JobDetails.tsx";
+import JobDetails from "./Components/JobDetails/JobDetails.tsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./Pages/Header.tsx";
+import Home from "./Pages/Home/Home.tsx";
 import UDJobForm from "./Pages/Forms/UDJobForm.tsx";
 import Signup from "./Pages/Registration/Signup.tsx";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,7 @@ function App() {
         <Navbar data-testid="navbar" />
           <ToastContainer />
         <Routes>
-          <Route path="/" element={<Header />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />

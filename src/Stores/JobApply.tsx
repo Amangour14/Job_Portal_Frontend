@@ -1,27 +1,26 @@
-import {create} from 'zustand';
-import { persist } from 'zustand/middleware';
-import { Card } from '../Pages/Job/Job';
+import { create } from "zustand";
+import { Card } from "../Pages/Job/Job";
 
- 
-type JobStoreState ={
+const LOCAL_STORAGE_KEY = "jobStoreState";
+
+const initialState = {
+  job: null,
+};
+
+const persistedState =
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || "null") || initialState;
+
+type JobStoreState = {
   job: Card | null;
   applyOne: (job: Card) => void;
-}
- 
-const useJobStore = create<JobStoreState>()(
-  persist(
-    (set) => ({
-      job: null,
-      applyOne: (job) => {
-        set(() => ({
-          job,
-        }));
-      },
-    }),
-    {
-      name: 'job', 
-    }
-  )
-);
- 
+};
+
+const useJobStore = create<JobStoreState>((set) => ({
+  job: persistedState.job,
+  applyOne: (job) => {
+    set(() => ({ job }));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ job }));
+  },
+}));
+
 export default useJobStore;

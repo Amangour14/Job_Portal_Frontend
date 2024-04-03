@@ -1,6 +1,6 @@
 import "./JobDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
-import useJobQuery from "../../Service/useJobQuery";
+import useJobQuery from "../../Services/useJobQuery";
 import useJobStore from "../../Stores/JobApply";
 import { Card } from "../../Pages/Job/Job";
 import { toast } from "react-toastify";
