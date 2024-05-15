@@ -1,33 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient, useMutation } from "react-query";
-import { addUser } from "../../Services/FormSubmission";
-import { useAuth } from "../../Services/useAuth";
-import { toast } from "react-toastify";
+
+import { useSignUp } from "../../Hooks/useRegister";
 
 const Signup: React.FC = () => {
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
-
-  const queryClient = useQueryClient();
-
-  const { mutate } = useMutation(addUser, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("signupuser");
-      toast.success(`Signup Succefully`, {
-        position: "top-center",
-      });
-      navigate("/login");
-    },
-    onError: () => {
-      toast.error(`Email is already Taken`, {
-        position: "top-center",
-      });
-    },
-  });
+  const signUp = useSignUp();
 
   const formik = useFormik({
     initialValues: {
@@ -39,18 +21,11 @@ const Signup: React.FC = () => {
       password: Yup.string().required("Required").min(6),
     }),
     onSubmit: (values, action) => {
-      mutate(values);
+      signUp(values);
       action.resetForm();
       setError("");
-      console.log();
     },
   });
-  const nav = useNavigate();
-  const user = useAuth();
-  useEffect(() => {
-    if (user.user) nav("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="form-container">

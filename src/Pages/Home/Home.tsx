@@ -3,7 +3,6 @@ import "./Home.css"; // Import the plain CSS file
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
-
   return (
     <div>
       <div className="container">

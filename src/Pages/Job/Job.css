@@ -1,16 +1,15 @@
- 
 .job-listing-container {
   width: 333px;
-  margin: 20px ;
+  margin: 20px;
   padding: 20px;
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-template-areas:  'title title'
-                        'des des'
-                        'loc but' ;
-  
+  grid-template-areas:
+    "title title"
+    "des des"
+    "loc but";
 }
 .job-title {
   font-size: 18px;
@@ -18,29 +17,27 @@
   margin-bottom: 10px;
   grid-area: title;
 }
- 
+
 .job-description {
   font-size: 16px;
   margin-bottom: 10px;
   grid-area: des;
 }
- 
+
 .job-location {
   font-size: 14px;
   color: #666;
   grid-area: loc;
 }
- 
+
 .job-details {
   margin-top: 10px;
 }
- 
+
 .job-details label {
   font-weight: bold;
 }
- 
+
 .job-details span {
   margin-left: 5px;
 }
-
-

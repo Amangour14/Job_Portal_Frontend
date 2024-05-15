@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Card } from "../Pages/Job/Job";
+import { Card } from "../utils/Types";
 
 const LOCAL_STORAGE_KEY = "jobStoreState";
 
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const persistedState =
-  JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || "null") || initialState;
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) ?? "null") ?? initialState;
 
 type JobStoreState = {
   job: Card | null;

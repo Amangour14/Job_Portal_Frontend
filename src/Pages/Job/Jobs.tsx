@@ -1,23 +1,25 @@
-import { useQuery } from "react-query";
+import { jobList } from "../../Services/JobPagination";
 import Job from "./Job";
-import { fetchJobs } from "../../Services/JobPagination";
-import { useState } from "react";
-
+import { Card } from "../../utils/Types";
+import { useEffect, useState } from "react";
 const Jobs = () => {
-  const [page, setPage] = useState(1);
-  const allJobs = useQuery({
-    queryKey: ["jobs", page],
-    queryFn: () => fetchJobs(page),
-  });
-
-  if (allJobs.isLoading) {
-    return <h2>Loading...</h2>;
-  }
-
-  if (allJobs.isError) {
-    return <h2>Error Occured</h2>;
-  }
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [job, setJobs] = useState<Card[]>([]);
+  const postPerPage = 3;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await jobList();
+        setJobs(response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    fetchData();
+  }, []);
+  const indexOfLastJob = currentPage * postPerPage;
+  const indexOfFirstJob = indexOfLastJob - postPerPage;
+  const currentJobs = job.slice(indexOfFirstJob, indexOfLastJob);
   return (
     <>
       <div
@@ -28,7 +30,7 @@ const Jobs = () => {
           margin: "10px",
         }}
       >
-        {allJobs.data?.map((item) => (
+        {currentJobs.map((item) => (
           <div key={item.jobId}>
             <Job
               jobId={item.jobId}
@@ -42,14 +44,14 @@ const Jobs = () => {
       <div>
         <center>
           <button
-            onClick={() => setPage((page) => page - 1)}
-            disabled={page === 1}
+            onClick={() => setCurrentPage((currentPage) => currentPage - 1)}
+            disabled={currentPage === 1}
           >
             Prev Page
           </button>
           <button
-            onClick={() => setPage((page) => page + 1)}
-            disabled={page === 2}
+            onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
+            disabled={postPerPage * currentPage >= job.length}
           >
             Next
           </button>
