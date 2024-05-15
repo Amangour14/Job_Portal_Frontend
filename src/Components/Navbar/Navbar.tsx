@@ -4,14 +4,14 @@ import "./Navbar.css";
 import { useAuth } from "../../Services/useAuth";
 import { useQueryClient } from "react-query";
 const Navbar: React.FC = () => {
-  const navigate =useNavigate();
-  const user = useAuth()
+  const navigate = useNavigate();
+  const user = useAuth();
   const queryClient = useQueryClient();
-  const handleLogout =() => {
+  const handleLogout = () => {
     queryClient.setQueryData("user", null);
-    navigate("/")
-  }
-  
+    navigate("/");
+  };
+
   return (
     <div className="con">
       <nav>
@@ -27,9 +27,15 @@ const Navbar: React.FC = () => {
           </li>
         </ul>
         <ul>
-        {user.user ? <li id='login' onClick={() => handleLogout()} >Logout</li> : <li id="login">
-            <Link to="/signup">Login/Signup</Link>
-          </li>}
+          {user.user ? (
+            <li id="login" onClick={() => handleLogout()}>
+              Logout
+            </li>
+          ) : (
+            <li id="login">
+              <Link to="/signup">Login/Signup</Link>
+            </li>
+          )}
         </ul>
       </nav>
     </div>

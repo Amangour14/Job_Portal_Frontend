@@ -19,14 +19,14 @@ const Signup: React.FC = () => {
       queryClient.invalidateQueries("signupuser");
       toast.success(`Signup Succefully`, {
         position: "top-center",
-      })
-      navigate("/login")
+      });
+      navigate("/login");
     },
-    onError:()=>{
+    onError: () => {
       toast.error(`Email is already Taken`, {
         position: "top-center",
-      })
-    }
+      });
+    },
   });
 
   const formik = useFormik({
@@ -42,14 +42,14 @@ const Signup: React.FC = () => {
       mutate(values);
       action.resetForm();
       setError("");
-      console.log()
+      console.log();
     },
   });
   const nav = useNavigate();
   const user = useAuth();
   useEffect(() => {
     if (user.user) nav("/");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
