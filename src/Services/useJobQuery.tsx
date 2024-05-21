@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Card } from "../Pages/Job/Job";
-
+import { Card } from "../utils/Types";
 const fetchJobById = async (id: number): Promise<Card> => {
   const response = await axios.get(`http://localhost:8080/job/${id}`);
   return response.data;

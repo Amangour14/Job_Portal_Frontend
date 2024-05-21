@@ -2,8 +2,8 @@ import "./JobDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
 import useJobQuery from "../../Services/useJobQuery";
 import useJobStore from "../../Stores/JobApply";
-import { Card } from "../../Pages/Job/Job";
 import { toast } from "react-toastify";
+import { Card } from "../../utils/Types";
 
 const JobDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

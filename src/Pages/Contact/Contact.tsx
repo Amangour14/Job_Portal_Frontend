@@ -1,10 +1,9 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Contact.css";
-import { addContact } from "../../Services/FormSubmission";
-import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
-import { useAuth } from "../../Services/useAuth";
+import { useAuth } from "../../Hooks/useAuth";
+import { useContact } from "../../Hooks/useContact";
 
 const ContactFormSchema = Yup.object().shape({
   name: Yup.string().required("Required").min(3),
@@ -13,22 +12,8 @@ const ContactFormSchema = Yup.object().shape({
 });
 
 const ContactForm = () => {
-  const queryClient = useQueryClient();
   const user = useAuth();
-
-  const { mutate } = useMutation(addContact, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("contactuser");
-      toast.success(`Message send successfully`, {
-        position: "top-center",
-      });
-    },
-    onError: () => {
-      toast.error(`Something Wrong!`, {
-        position: "top-center",
-      });
-    },
-  });
+  const pc = useContact();
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +28,7 @@ const ContactForm = () => {
           position: "top-center",
         });
       } else {
-        mutate(values);
+        pc(values);
         action.resetForm();
       }
     },

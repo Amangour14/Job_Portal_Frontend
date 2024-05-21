@@ -5,7 +5,7 @@ import "./UD_Job_form.css";
 import { useMutation, useQueryClient } from "react-query";
 import { apply } from "../../Services/FormSubmission";
 import { toast } from "react-toastify";
-import { Card } from "../Job/Job";
+import { Card } from "../../utils/Types";
 import useJobStore from "../../Stores/JobApply";
 
 export interface FormValues {
@@ -41,7 +41,6 @@ const UD_Job_Form: React.FC = () => {
 
   const { mutate } = useMutation(apply, {
     onSuccess: () => {
-      console.log("success");
       queryClient.invalidateQueries("users");
       toast.success(`Your application Submitted Successfully`, {
         position: "top-center",

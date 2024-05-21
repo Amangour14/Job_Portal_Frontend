@@ -1,18 +1,7 @@
 import "./Job.css";
 import useJobQuery from "../../Services/useJobQuery";
 import { Link } from "react-router-dom";
-export type Card = {
-  jobId: number;
-  jobTitle: string;
-  remote_or_onsite: string;
-  location: string;
-  fulltime_or_parttime: string;
-  salary: string;
-  job_description: string;
-  job_responsibility: string;
-  educational_requirement: string;
-  experiences: string;
-};
+
 
 export type JobCard = {
   jobId: number;

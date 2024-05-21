@@ -1,21 +1,21 @@
 import { useEffect } from "react";
-import { User } from "./FormSubmission";
-import axios from "axios";
+import { User } from "../utils/Types";
 import { useQuery } from "react-query";
 import * as userLocalStorage from "./userLocalSotrage";
+import { getAPI } from "../http-service/axios-service";
 
 async function getUser(user: User | null | undefined): Promise<User | null> {
   if (!user) return null;
-  const response = await axios.get(
-    `http://localhost:8080/auth/user/${user.email}`,
-    {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    }
-  );
-  if (!response.status) throw new Error("Failed on get user request");
-
+  // const response = await axios.get(
+  //   `http://localhost:8080/auth/user/${user.email}`,
+  //   {
+  //     headers: {
+  //       Authorization: `Bearer ${user.token}`,
+  //     },
+  //   }
+  // );
+  const response = await getAPI({ url: `auth/user/${user.email}` });
+  if (response.status) throw new Error("Failed on get user request");
   return await response.data;
 }
 
