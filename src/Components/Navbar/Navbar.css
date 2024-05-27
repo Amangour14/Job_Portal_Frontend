@@ -45,3 +45,8 @@ a:hover {
 .btn-primary {
   cursor: pointer;
 }
+
+ul > li > button {
+  background: none;
+  border: none;
+}

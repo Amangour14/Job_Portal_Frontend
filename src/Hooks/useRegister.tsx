@@ -1,8 +1,7 @@
 import { useSnackbar } from "notistack";
 import { UseMutateFunction, useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { ResponseError } from "../utils/Errors/ResponseError";
-import { postAPI } from "../http-service/axios-service";
+import { postAPI } from "../Services/http-service/axios-service";
 
 type User = {
   email: string;
@@ -14,9 +13,6 @@ async function signUp(email: string, password: string): Promise<User> {
     payload: { email, password },
   };
   const response = await postAPI(config);
-
-  if (response.status !== 201)
-    throw new ResponseError("Failed on sign up request", response?.data);
   return response.data;
 }
 

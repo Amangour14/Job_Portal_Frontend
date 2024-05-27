@@ -1,8 +1,7 @@
 import { useSnackbar } from "notistack";
 import { UseMutateFunction, useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { ResponseError } from "../utils/Errors/ResponseError";
-import { postAPI } from "../http-service/axios-service";
+import { postAPI } from "../Services/http-service/axios-service";
 import { Contact } from "../utils/Types";
 
 type IUseContact = UseMutateFunction<
@@ -25,8 +24,6 @@ async function postContact(email: string, message: string, name: string) {
     token: users.token,
   };
   const response = await postAPI(config);
-  if (response.status !== 201)
-    throw new ResponseError("Failed on sign up request", response?.data);
   return response?.data;
 }
 

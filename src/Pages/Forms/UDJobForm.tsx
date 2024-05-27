@@ -32,7 +32,18 @@ const UD_Job_Form: React.FC = () => {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    resume: Yup.mixed().required("Resume is required"),
+    resume: Yup.mixed()
+      .required("Resume is required")
+      .test(
+        "fileSize",
+        "File size is too Large",
+        (value) => value && value instanceof File && value.size <= 1048576
+      )
+      .test(
+        "fileType",
+        "Unsupported File Format",
+        (value) => value && (value as File).type === "application/pdf"
+      ),
     experience: Yup.string().required("Experience is required"),
   });
 
@@ -53,10 +64,14 @@ const UD_Job_Form: React.FC = () => {
     },
   });
 
-  const handleSubmit = (values: FormValues) => {
+  const handleSubmit = (
+    values: FormValues,
+    action: { resetForm: () => void }
+  ) => {
     const job: Card | null = jobStore.job;
     const applyData: Apply = { JobJobId: job, jobApplication: values };
     mutate(applyData);
+    action.resetForm();
   };
 
   return (

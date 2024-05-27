@@ -42,3 +42,18 @@ input[type="file"] {
 .ud-button:hover {
   background-color: #0056b3;
 }
+
+.progress-bar {
+  width: 100%;
+  background-color: #f3f3f3;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.progress-bar-fill {
+  height: 10px;
+  background-color: #4caf50;
+  width: 0;
+  border-radius: 4px;
+}
