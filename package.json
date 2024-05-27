@@ -15,6 +15,7 @@
   "dependencies": {
     "@heroicons/react": "^2.1.1",
     "@mui/material": "^5.15.11",
+    "@tanstack/react-query": "^5.37.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.7",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.24.0",
     "@babel/preset-react": "^7.23.3",
+    "@tanstack/eslint-plugin-query": "^5.35.6",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.5.2",

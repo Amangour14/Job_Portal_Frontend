@@ -1,8 +1,5 @@
 import "./Job.css";
-import useJobQuery from "../../Services/useJobQuery";
-import { Link } from "react-router-dom";
-
-
+import { useNavigate } from "react-router-dom";
 export type JobCard = {
   jobId: number;
   jobTitle: string;
@@ -11,17 +8,17 @@ export type JobCard = {
 };
 const Job = (props: JobCard) => {
   const { jobId, jobTitle, job_description, location } = props;
-  const Job = (jobId: number) => useJobQuery(jobId);
+  const navigate = useNavigate();
   return (
-    <Link to={`/jobs/${jobId}`}>
-      <button onClick={() => Job(jobId)}>
+    <div>
+      <button onClick={() => navigate(`/jobs/${jobId}`)}>
         <div className="job-listing-container">
           <div className="job-title">{jobTitle}</div>
           <div className="job-description">{job_description}</div>
           <div className="job-location">{location}</div>
         </div>
       </button>
-    </Link>
+    </div>
   );
 };
 

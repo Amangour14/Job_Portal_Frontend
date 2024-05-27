@@ -4,15 +4,15 @@ import { Card } from "../../utils/Types";
 import { useEffect, useState } from "react";
 const Jobs = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [job, setJobs] = useState<Card[]>([]);
-  const postPerPage = 3;
+  const [job, setJob] = useState<Card[]>([]);
+  const postPerPage = 2;
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await jobList();
-        setJobs(response.data);
+        setJob(response.data);
       } catch (error) {
-        console.error("Error:", error);
+        console.log(error);
       }
     };
     fetchData();
@@ -44,13 +44,17 @@ const Jobs = () => {
       <div>
         <center>
           <button
-            onClick={() => setCurrentPage((currentPage) => currentPage - 1)}
+            onClick={() =>
+              setCurrentPage((prevCurrentPage) => prevCurrentPage - 1)
+            }
             disabled={currentPage === 1}
           >
             Prev Page
           </button>
           <button
-            onClick={() => setCurrentPage((currentPage) => currentPage + 1)}
+            onClick={() =>
+              setCurrentPage((prevCurrentPage) => prevCurrentPage + 1)
+            }
             disabled={postPerPage * currentPage >= job.length}
           >
             Next

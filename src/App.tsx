@@ -11,13 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./Pages/NotFound/NotFound.tsx";
 import PrivateRoute from "./Components/PrivateRoute.tsx";
-import { useEffect } from "react";
-import { setAxiosBaseUrl } from "./http-service/axios-service.ts";
 
 function App() {
-  useEffect(() => {
-    setAxiosBaseUrl("http://localhost:8080/");
-  }, []);
   return (
     <Router>
       <div>

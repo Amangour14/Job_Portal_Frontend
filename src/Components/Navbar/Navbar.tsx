@@ -28,8 +28,10 @@ const Navbar: React.FC = () => {
         </ul>
         <ul>
           {user.user ? (
-            <li id="login" onClick={() => handleLogout()}>
-              Logout
+            <li>
+              <button id="login" onClick={() => handleLogout()}>
+                Logout
+              </button>
             </li>
           ) : (
             <li id="login">

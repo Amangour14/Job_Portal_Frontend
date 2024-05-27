@@ -13,7 +13,7 @@ const JobDetails: React.FC = () => {
   const navigate = useNavigate();
   const user = localStorage.getItem("user");
   const apply = (data: Card) => {
-    if (user !== null) {
+    if (user) {
       jobstore.applyOne(data);
       navigate("/jobform");
     } else {

@@ -13,7 +13,7 @@ const ContactFormSchema = Yup.object().shape({
 
 const ContactForm = () => {
   const user = useAuth();
-  const pc = useContact();
+  const postQuery = useContact();
 
   const formik = useFormik({
     initialValues: {
@@ -23,12 +23,12 @@ const ContactForm = () => {
     },
     validationSchema: ContactFormSchema,
     onSubmit: (values, action) => {
-      if (user.user === null) {
+      if (!user.user) {
         toast.info(`You need to login for submitting Query`, {
           position: "top-center",
         });
       } else {
-        pc(values);
+        postQuery(values);
         action.resetForm();
       }
     },

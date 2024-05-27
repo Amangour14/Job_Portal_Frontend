@@ -2,8 +2,7 @@ import { useSnackbar } from "notistack";
 import { UseMutateFunction, useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { QUERY_KEY } from "../constants/queryKeys";
-import { ResponseError } from "../utils/Errors/ResponseError";
-import { postAPI } from "../http-service/axios-service";
+import { postAPI } from "../Services/http-service/axios-service";
 
 type IUseSignIn = UseMutateFunction<
   User,
@@ -26,9 +25,6 @@ async function signIn(email: string, password: string) {
     payload: { email, password },
   };
   const response = await postAPI(config);
-  // const da=await getAPI({url:'/job'})
-  if (response.status !== 200)
-    throw new ResponseError("Failed on sign up request", response?.data);
   return response?.data;
 }
 

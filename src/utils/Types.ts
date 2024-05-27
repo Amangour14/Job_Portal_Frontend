@@ -28,7 +28,7 @@ export type Card = {
   educational_requirement: string;
   experiences: string;
 };
- export type Contact = {
+export type Contact = {
   email: string;
   name: string;
   message: string;
